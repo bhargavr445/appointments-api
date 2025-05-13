@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const taskManagerConnection = mongoose.createConnection('mongodb://127.0.0.1:27017/task-manager-api');
+const taskManagerConnection = mongoose.createConnection(`mongodb+srv://${process.env.ATLAS_USER_NAME}:${process.env.ATLAS_PSWD}@${process.env.CLUSTER_INFO}/task-manager-api`);
 
 taskManagerConnection.on('connected', () => {
     console.log('MongoDB connected to task-manager-api');
