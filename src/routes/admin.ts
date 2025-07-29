@@ -27,7 +27,7 @@ router.get('/api/searchAppointmentsByDate', async (request: Request, response: R
         //         }
         //     }
         // ])
-        const appointmentsForDate = await AppointmentModel.findOne({ appointmentDate: date});
+        const appointmentsForDate = await AppointmentModel.find({ appointmentDate: date});
         return response.status(200).send({ data: appointmentsForDate, status: 1 });
     } catch (error) {
         return response.status(500).send({ data: error, status: 0 });
