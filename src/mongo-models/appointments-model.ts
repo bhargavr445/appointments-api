@@ -7,6 +7,7 @@ const appointmentSchema = new mongoose.Schema({
     email: { type: String },
     phoneNumber: { type: String },
     note: { type: String },
+    status: { type: String },
     appliances: {
         type: {
             numberOfLargeAppliances: { type: Number }
@@ -52,17 +53,9 @@ const appointmentSchema = new mongoose.Schema({
             elevator: { type: Boolean }
         }
     },
-
-    appointments: {
-        type: [
-            {
-                date: { type: String },
-                time: { type: String },
-                status: { type: String }
-            }
-        ]
-    }
-},
+    appointmentTime: { type: String },
+    appointmentDate: { type: String }
+    },
     { timestamps: true }
 );
 

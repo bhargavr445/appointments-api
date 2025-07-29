@@ -50,23 +50,30 @@ router.get('/api/appointmentsByDate', (request: Request, response: Response) => 
 router.post('/api/schedule', async (request: Request, response: Response) => {
 
     try {
-        const appointment = [{ ...request.body.appointment, status: 'confirmed' }];
-        delete request.body.appointment;
-        const updatedPayload = { ...request.body, appointments: appointment };
-        const date = updatedPayload.appointments[0].date;
-        const existing = await AppointmentModel.findOne({
-            email: updatedPayload.email,
-            "appointments.date": date
-          });
+        //const appointment = [{ ...request.body.appointment, status: 'confirmed' }];
+        // delete request.body.appointment;
+        //const updatedPayload = { ...request.body, appointments: appointment };
+        //const date = updatedPayload.appointments[0].date;
+        // const existing = await AppointmentModel.findOne({
+        //     email: updatedPayload.email,
+        //     "appointments.date": date
+        //   });
 
-          if (existing) {
-            return response.status(409).send({
-              status: 0,
-              message: `An appointment already exists on ${date} for this user.`,
-            });
-          }
+        //   if (existing) {
+        //     return response.status(409).send({
+        //       status: 0,
+        //       message: `An appointment already exists on ${date} for this user.`,
+        //     });
+        //   }
 
-          const record = await AppointmentModel.insertOne(updatedPayload);
+        const updatedResponse = {
+            ...request.body, 
+            appointmentDate: request.body.appointment.date, 
+            appointmentTime: request.body.appointment.time, 
+            status: 'confirmed'
+        }
+
+          const record = await AppointmentModel.insertOne(updatedResponse);
 
         /**
          * Based on the emial id, this will check if this email already exists.
