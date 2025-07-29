@@ -54,7 +54,8 @@ const appointmentSchema = new mongoose.Schema({
         }
     },
     appointmentTime: { type: String },
-    appointmentDate: { type: String }
+    appointmentDate: { type: String },
+    packingHelp: { type: Boolean }
     },
     { timestamps: true }
 );
