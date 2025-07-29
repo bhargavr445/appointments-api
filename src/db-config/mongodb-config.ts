@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+require('dotenv').config();
 
 const taskManagerConnection = mongoose.createConnection(`mongodb+srv://${process.env.ATLAS_USER_NAME}:${process.env.ATLAS_PSWD}@${process.env.CLUSTER_INFO}/task-manager-api`);
 
