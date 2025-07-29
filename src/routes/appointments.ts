@@ -31,7 +31,7 @@ router.get('/api/checkIfAppointIsAlreadySchedudForToday', async (request: Reques
                 {
                     $project: {
                         _id: 0,
-                        appointmentDate: 1
+                        appointmentTime: 1
                     }
                 }
             ]
