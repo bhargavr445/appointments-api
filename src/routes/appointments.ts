@@ -22,21 +22,41 @@ router.get('/api/checkIfAppointIsAlreadySchedudForToday', async (request: Reques
     }
     try {
         const appointmentsListForRequestedDate = await AppointmentModel.aggregate(
-        [
-            { $unwind: "$appointments" },
-            {
-              $match: {
-                "appointments.date": requestedDate
-              }
-            },
-            {
-              $project: {
-                _id: 0,
-                time: "$appointments.time",
-                status: "$appointments.status"
-              }
-            }
-          ])          
+            [
+                {
+                    $match: {
+                        appointmentDate: requestedDate
+                    }
+                },
+                {
+                    $project: {
+                        _id: 0,
+                        appointmentDate: 1
+                    }
+                }
+            ]
+
+        );
+        
+        
+        // await AppointmentModel.aggregate(
+        // [
+        //     { $unwind: "$appointments" },
+        //     {
+        //       $match: {
+        //         "appointments.date": requestedDate
+        //       }
+        //     },
+        //     {
+        //       $project: {
+        //         _id: 0,
+        //         time: "$appointments.time",
+        //         status: "$appointments.status"
+        //       }
+        //     }
+        //   ])        
+          
+          
         return response.status(200).send({ data: appointmentsListForRequestedDate ? appointmentsListForRequestedDate : [], status: 1 });
     } catch (error) {
         return response.status(500).send({ data: error, status: 0 });
