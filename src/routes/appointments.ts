@@ -66,25 +66,27 @@ router.post('/api/schedule', async (request: Request, response: Response) => {
             });
           }
 
+          const record = await AppointmentModel.insertOne(updatedPayload);
+
         /**
          * Based on the emial id, this will check if this email already exists.
          * If exists it will push new appointment to the existing appointments array
          * if not this will create new record.
          */
-        const record = await AppointmentModel.updateOne(
-            { email: updatedPayload.email },
-            {
-                $set: {
-                    firstName: updatedPayload.firstName,
-                    lastName: updatedPayload.lastName,
-                    phoneNumber: updatedPayload.phoneNumber
-                },
-                $push: {
-                    appointments: updatedPayload.appointments
-                }
-            },
-            { upsert: true }
-        );
+        // const record = await AppointmentModel.updateOne(
+        //     { email: updatedPayload.email },
+        //     {
+        //         $set: {
+        //             firstName: updatedPayload.firstName,
+        //             lastName: updatedPayload.lastName,
+        //             phoneNumber: updatedPayload.phoneNumber
+        //         },
+        //         $push: {
+        //             appointments: updatedPayload.appointments
+        //         }
+        //     },
+        //     { upsert: true }
+        // );
         return response.status(200).send({ data: record, status: 1 });
     } catch (error) {
         return response.status(500).send({ data: error, status: 0 });
