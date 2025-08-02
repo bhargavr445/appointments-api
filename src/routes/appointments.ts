@@ -85,7 +85,6 @@ router.post('/api/schedule', async (request: Request, response: Response) => {
         //       message: `An appointment already exists on ${date} for this user.`,
         //     });
         //   }
-
         const updatedResponse = {
             ...request.body, 
             appointmentDate: request.body.appointment.date, 
@@ -123,8 +122,8 @@ router.post('/api/schedule', async (request: Request, response: Response) => {
 router.get('/api/searchByEmail', async (request: Request, response: Response) => {
     const email = request.query.email;
     try {
-        const recordForEmail = await AppointmentModel.findOne({ email: email });
-        return response.status(200).send({ data: recordForEmail, status: 1 });
+        const recordsForEmail = await AppointmentModel.find({ email: email });
+        return response.status(200).send({ data: recordsForEmail, status: 1 });
     } catch (error) {
         return response.status(500).send({ data: error, status: 0 });
     }
