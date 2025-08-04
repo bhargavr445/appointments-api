@@ -16,8 +16,9 @@ const appointmentSchema = new mongoose.Schema({
     },
     boxes: {
         type: {
-            fragile: { type: Number },
-            noOfBoxes: { type: String }
+            containsFragileItems: { type: Boolean },
+            noOfBoxes: { type: String },
+            fragileItemsDesc: { type: String }
         }
     },
     specialItems: {
