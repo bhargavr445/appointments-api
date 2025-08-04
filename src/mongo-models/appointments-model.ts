@@ -4,6 +4,7 @@ import taskManagerConnection from '../db-config/mongodb-config';
 const appointmentSchema = new mongoose.Schema({
     firstName: { type: String },
     lastName: { type: String },
+    serviceType: { type: String },
     email: { type: String },
     phoneNumber: { type: String },
     note: { type: String },
