@@ -36,6 +36,7 @@ router.get('/api/allappointments', async (_: Request, response: Response) => {
 router.post('/api/fetchEmployeeByPin', async (request: Request, response: Response) => {
     // const { pin } = request.body;
     const pin = request.body.pin;
+    console.log(JSON.stringify(request.body));
     try {
         const employee = await EmployeeModel.findOne({ pin: pin });
         return response.status(200).send({ data: employee, status: 1 });
