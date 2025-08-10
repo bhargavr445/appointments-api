@@ -10,6 +10,6 @@ const employeeSchema = new mongoose.Schema({
 
 });
 
-const EmployeeModel = taskManagerConnection.model('Employee', employeeSchema);
+const EmployeeModel = taskManagerConnection.model('employees', employeeSchema);
 
 export default EmployeeModel;
